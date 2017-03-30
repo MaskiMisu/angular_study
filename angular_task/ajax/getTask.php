@@ -4,7 +4,7 @@ $status = '%';
 if (isset($_GET['status'])) {
 	$status = $_GET['status'];
 }
-$query = "select ID, TASK, STATUS from tasks where status like '".$status."' order by status, id desc";
+$query = "select ID, TASK, STATUS, TASK_DESCRIPTION from tasks where status like '".$status."' order by id desc";
 $result = $mysqli->query($query) or die ($mysqli->error.__LINE__);
 
 $arr = array();

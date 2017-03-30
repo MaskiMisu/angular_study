@@ -24,7 +24,7 @@ app.controller('taskController', function($scope, $http) {
 	};
 
 	$scope.toggleStatus = function(item, status, task) {
-		status = status == '2' ? '0' : '2';
+		status = status == '1' ? '0' : '1';
 		$http.post("ajax/updateTask.php?taskID="+item+"&status="+status).success(function(data) {
 			getTask();
 		});

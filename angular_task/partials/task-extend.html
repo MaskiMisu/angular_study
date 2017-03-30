@@ -1,0 +1,43 @@
+<div class="widget-box" id="recent-box" ng-controller="taskController">
+	<div class="widget-header header color-white">
+		<div class="row">
+			<div class="col-sm-6">
+				<h4 class="bigger lighter"><i class="glyphicon glyphicon-align-justify"></i>&nbsp;TASK MANAGER</h4>
+			</div>
+			<div class="col-sm-3">
+				<button ng-click="addNewClicked=!addNewClicked;" class="btn btn-flat btn-sm btn-primary header-elements-margin">
+					<i class="glyphicon glyphicon-plus"></i>&nbsp;Add New Task
+				</button>
+			</div>
+			<div class="col-sm-3">
+				<input type="text" ng-model="filterTask" class="form-control search header-elements-margin" placeholder="Filter Tasks">
+			</div>
+		</div>
+	</div>
+	<div class="widget-body">
+		<form ng-init="addNewClicked=false;" ng-if="addNewClicked" id="newTaskForm" class="add-task">
+			<div class="form-actions">
+				<div class="input-group">
+					<input type="text" class="form-control" name="comment" ng-model="taskInput" placeholder="Add New Task" ng-focus="addNewClicked">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit" ng-click="addTask(taskInput)">
+							<i class="glyphicon glyphicon-plus"></i>&nbsp;Add New Task
+						</button>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="task">
+			<label class="{{task.STATUS==0?'task-not-done':'task-done'}}" ng-repeat="task in tasks | filter: filterTask">
+				<span class="task-title" ng-click="toggleDescription(task.ID)">{{task.TASK}} [{{task.ID}}]</span>
+				<div class="pull-right">
+					<a ng-click="toggleStatus(task.ID, task.STATUS, task.TASK)"><i class="glyphicon glyphicon-ok {{task.STATUS==0?'grey-text':'green-text'}}"></i></a>&nbsp;&nbsp;
+					<a ng-click="deleteTask(task.ID)"><i class="glyphicon glyphicon-trash"></i></a>
+				</div>
+				<div>
+					{{task.TASK_DESCRIPTION}}
+				</div>
+			</label>
+		</div>
+	</div>
+</div>
